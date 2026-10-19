@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Submitted - {{ app_name }}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="page-thanks">
+<div class="bg-orbs"><span></span><span></span><span></span></div>
+
+<main class="thanks-box">
+  <div class="checkmark"><svg viewBox="0 0 52 52"><path class="check" d="M14 27l8 8 16-18"/></svg></div>
+  <h1>Request Received!</h1>
+  <p>Your reference number is <b>#{{ rid }}</b>.<br>Auto-reply is on its way to your inbox.</p>
+  <div class="thanks-actions">
+    <a class="btn" href="/">Submit Another</a>
+    <a class="btn ghost" href="/dashboard">View Dashboard</a>
+  </div>
+</main>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

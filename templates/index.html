@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ app_name }} - Get Started</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="page-form">
+<div class="bg-orbs"><span></span><span></span><span></span></div>
+
+<nav class="nav">
+  <div class="logo">{{ app_name }}<span class="dot">.</span></div>
+  <a href="/dashboard" class="nav-link">Dashboard &rarr;</a>
+</nav>
+
+<main class="hero">
+  <section class="hero-copy reveal">
+    <span class="badge">Workflow Automation</span>
+    <h1>Automate your<br><span class="grad-text">business inquiries</span></h1>
+    <p>Form submit karte hi: data auto-save, customer ko auto reply aur team ko instant notification.</p>
+    <ul class="feature-list">
+      <li>&#10003; Instant lead capture</li>
+      <li>&#10003; Automated email reply</li>
+      <li>&#10003; Owner notification</li>
+      <li>&#10003; Live dashboard + Excel export</li>
+    </ul>
+  </section>
+
+  <section class="card reveal delay-1">
+    <h2>Request a Service</h2>
+    {% if error %}<div class="alert">{{ error }}</div>{% endif %}
+    <form action="/submit" method="post" id="leadForm">
+      <div class="row">
+        <label>Full Name *<input type="text" name="name" required placeholder="Ali Khan"></label>
+        <label>Email *<input type="email" name="email" required placeholder="ali@company.com"></label>
+      </div>
+      <div class="row">
+        <label>Phone<input type="text" name="phone" placeholder="+92 300 0000000"></label>
+        <label>Company<input type="text" name="company" placeholder="Company Ltd."></label>
+      </div>
+      <label>Service Needed
+        <select name="service">
+          {% for s in services %}<option>{{ s }}</option>{% endfor %}
+        </select>
+      </label>
+      <label>Message *<textarea name="message" rows="4" required placeholder="Tell us about your project..."></textarea></label>
+      <button type="submit" class="btn"><span>Send Request</span></button>
+    </form>
+  </section>
+</main>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

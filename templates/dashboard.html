@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard - {{ app_name }}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="page-dash">
+<div class="bg-orbs"><span></span><span></span><span></span></div>
+
+<nav class="nav">
+  <div class="logo">{{ app_name }}<span class="dot">.</span></div>
+  <div>
+    <a href="/export" class="nav-link">Export Excel</a>
+    <a href="/" class="nav-link">New Lead</a>
+  </div>
+</nav>
+
+<main class="dash">
+  <header class="dash-head reveal">
+    <div>
+      <h1>Automation Dashboard</h1>
+      <p>Live pipeline status &amp; activity log</p>
+    </div>
+    <span class="pill {{ 'warn' if demo else 'ok' }}">
+      {{ 'DEMO MODE (SMTP not configured)' if demo else 'LIVE EMAIL' }}
+    </span>
+  </header>
+
+  <section class="stats reveal delay-1">
+    <div class="stat"><span class="num" data-target="0" id="s-total">0</span><label>Total Leads</label></div>
+    <div class="stat"><span class="num" id="s-today">0</span><label>Today</label></div>
+    <div class="stat"><span class="num" id="s-emails">0</span><label>Emails Processed</label></div>
+    <div class="stat"><span class="num" id="s-logs">0</span><label>Automations Run</label></div>
+  </section>
+
+  <section class="panels">
+    <div class="panel reveal delay-2">
+      <h3>Recent Leads</h3>
+      <div class="table-wrap">
+        <table id="leadTable">
+          <thead><tr><th>#</th><th>Name</th><th>Service</th><th>Email</th><th>Reply</th><th>Time</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel side reveal delay-3">
+      <h3>Automation Log</h3>
+      <ul id="logList" class="log-list"></ul>
+      <h3>Leads by Service</h3>
+      <div id="bars" class="bars"></div>
+    </div>
+  </section>
+</main>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+<script>initDashboard();</script>
+</body>
+</html>
